@@ -271,3 +271,168 @@ SMEMBERS: Bir Set'in tüm elemanlarını döndürür.
 1) "hello"
 2) "world"
 ```
+
+## LIST DATA TYPE
+
+LPUSH
+
+Bir liste başına bir veya daha fazla eleman ekler:
+
+
+```csharp
+> LPUSH mylist "world"
+1
+> LPUSH mylist "hello"
+2
+> LRANGE mylist 0 -1
+1) "hello"
+2) "world"
+```
+
+RPUSH
+Bir liste sonuna bir veya daha fazla eleman ekler:
+
+```csharp
+
+> RPUSH mylist "hello"
+1
+> RPUSH mylist "world"
+2
+> LRANGE mylist 0 -1
+1) "hello"
+2) "world"
+```
+
+
+LPOP
+Bir listenin başındaki elemanı siler ve döndürür:
+
+
+```csharp
+> LPUSH mylist "world"
+1
+> LPUSH mylist "hello"
+2
+> LPOP mylist
+"hello"
+> LRANGE mylist 0 -1
+1) "world"
+```
+
+
+RPOP
+Bir listenin sonundaki elemanı siler ve döndürür:
+
+```csharp
+
+> RPUSH mylist "hello"
+1
+> RPUSH mylist "world"
+2
+> RPOP mylist
+"world"
+> LRANGE mylist 0 -1
+1) "hello"
+```
+
+
+LLEN
+Bir listenin eleman sayısını döndürür:
+
+
+```csharp
+> LPUSH mylist "world"
+1
+> LPUSH mylist "hello"
+2
+> LLEN mylist
+2
+```
+
+LRANGE
+Bir listenin belirtilen aralığındaki elemanları döndürür:
+
+
+```csharp
+> RPUSH mylist "one"
+1
+> RPUSH mylist "two"
+2
+> RPUSH mylist "three"
+3
+> LRANGE mylist 0 1
+1) "one"
+2) "two"
+```
+
+
+LINDEX
+Bir listenin belirtilen indeksindeki elemanı döndürür:
+
+```csharp
+
+> RPUSH mylist "one"
+1
+> RPUSH mylist "two"
+2
+> RPUSH mylist "three"
+3
+> LINDEX mylist 0
+"one"
+> LINDEX mylist 1
+"two"
+```
+
+
+LSET
+Bir listenin belirtilen indeksindeki elemanı belirtilen değerle değiştirir:
+
+
+```csharp
+> RPUSH mylist "one"
+1
+> RPUSH mylist "two"
+2
+> RPUSH mylist "three"
+3
+> LSET mylist 0 "four"
+OK
+> LRANGE mylist 0 -1
+1) "four"
+2) "two"
+3) "three"
+```
+
+
+LREM
+Bir listeden belirtilen değere sahip tüm elemanları siler:
+
+```csharp
+
+> RPUSH mylist "hello"
+1
+> RPUSH mylist "world"
+2
+> RPUSH mylist "hello"
+3
+> LREM mylist -2 "hello"
+2
+> LRANGE mylist 0 -1
+1) "hello"
+2) "world
+```
+
+
+LTRIM
+Bir listenin belirtilen aralığındaki elemanları keser:
+
+
+```csharp
+> RPUSH mylist "one"
+1
+> RPUSH mylist "two"
+2
+> RPUSH mylist "three"
+3
+> LTRIM
+```
