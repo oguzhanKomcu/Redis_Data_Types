@@ -436,3 +436,126 @@ Bir listenin belirtilen aralığındaki elemanları keser:
 3
 > LTRIM
 ```
+
+## HASH DATA TYPE
+
+
+HSET
+Bir hash içinde belirtilen alan(ad) ve değeri ekler:
+
+
+```csharp
+> HSET myhash field1 "foo"
+1
+> HSET myhash field2 "bar"
+1
+> HGET myhash field1
+"foo"
+> HGET myhash field2
+"bar"
+```
+
+HMSET
+Bir hash içinde birden çok alan ve değer ekler:
+
+
+```csharp
+> HMSET myhash field1 "hello" field2 "world"
+OK
+> HGET myhash field1
+"hello"
+> HGET myhash field2
+"world"
+```
+
+
+HGET
+Bir hash içinde belirtilen alanın değerini döndürür:
+
+
+```csharp
+> HSET myhash field1 "foo"
+1
+> HGET myhash field1
+"foo"
+```
+
+HDEL
+Bir hash içinde belirtilen alanı siler:
+
+```csharp
+
+> HMSET myhash field1 "hello" field2 "world"
+OK
+> HDEL myhash field1
+1
+> HGET myhash field1
+(nil)
+```
+
+
+HEXISTS
+Bir hash içinde belirtilen alanın var olup olmadığını kontrol eder:
+
+
+```csharp
+> HSET myhash field1 "foo"
+1
+> HEXISTS myhash field1
+1
+> HEXISTS myhash field2
+0
+
+```
+HGETALL
+Bir hash içindeki tüm alanları ve değerlerini döndürür:
+
+
+```csharp
+> HMSET myhash field1 "hello" field2 "world"
+OK
+> HGETALL myhash
+1) "field1"
+2) "hello"
+3) "field2"
+4) "world"
+```
+
+HINCRBY
+Bir hash içindeki belirtilen alanın değerini belirtilen miktarda arttırır:
+
+
+```csharp
+> HSET myhash mykey 10
+1
+> HINCRBY myhash mykey 5
+15
+```
+
+
+HKEYS
+Bir hash içindeki tüm alan(ad)ları döndürür:
+
+
+```csharp
+> HSET myhash field1 "foo"
+1
+> HSET myhash field2 "bar"
+1
+> HGET myhash field1
+"foo"
+> HGET myhash field2
+"bar"
+
+```
+HVALS
+Bir hash içindeki tüm değerleri döndürür:
+
+
+```csharp
+> HMSET myhash field1 "hello" field2 "world"
+OK
+> HVALS myhash
+1) "hello"
+2) "world"
+```
