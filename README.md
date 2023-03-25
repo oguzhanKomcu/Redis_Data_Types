@@ -419,7 +419,7 @@ Bir listeden belirtilen değere sahip tüm elemanları siler:
 2
 > LRANGE mylist 0 -1
 1) "hello"
-2) "world
+2) "world"
 ```
 
 
