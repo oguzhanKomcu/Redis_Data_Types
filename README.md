@@ -1,6 +1,174 @@
+## STRING DATA TYPE
+
+SET
+
+Bir string değeri belirtilen anahtarın değeri olarak ayarlar:
 
 
-## SET 
+```csharp
+
+> SET mykey "hello"
+OK
+
+```
+GET
+
+Bir string değeri belirtilen anahtarın değerini döndürür:
+
+
+
+```csharp
+> GET mykey
+"hello"
+
+```
+APPEND
+Bir string değerine belirtilen değeri ekler:
+
+
+```csharp
+> APPEND mykey " world"
+12
+> GET mykey
+"hello world"
+```
+
+INCR
+Bir sayısal değeri belirtilen anahtarın değerini 1 artırır:
+
+
+```csharp
+> SET counter 1
+OK
+> INCR counter
+2
+> INCR counter
+3
+
+```
+DECR
+Bir sayısal değeri belirtilen anahtarın değerini 1 azaltır:
+
+
+```csharp
+> SET counter 3
+OK
+> DECR counter
+2
+> DECR counter
+1
+
+```
+INCRBY
+Bir sayısal değeri belirtilen anahtarın değerini belirtilen miktarda artırır:
+
+
+```csharp
+> SET counter 1
+OK
+> INCRBY counter 5
+6
+```
+
+DECRBY
+Bir sayısal değeri belirtilen anahtarın değerini belirtilen miktarda azaltır:
+
+```csharp
+
+> SET counter 10
+OK
+> DECRBY counter 3
+7
+
+```
+GETRANGE
+Bir string değerinin belirtilen aralığını döndürür:
+
+```csharp
+> SET mykey "This is a string"
+OK
+> GETRANGE mykey 0 3
+"This"
+> GETRANGE mykey -6 -1
+"string"
+```
+
+SETRANGE
+Bir string değerinin belirtilen aralığını belirtilen değerle değiştirir:
+
+
+```csharp
+> SET mykey "Hello World"
+OK
+> SETRANGE mykey 6 "Redis"
+OK
+> GET mykey
+"Hello Redis"
+```
+
+STRLEN
+Bir string değerinin uzunluğunu döndürür:
+
+```csharp
+
+> SET mykey "Hello World"
+OK
+> STRLEN mykey
+11
+```
+
+MGET
+Birden fazla anahtarın değerlerini döndürür:
+
+
+```csharp
+> SET key1 "value1"
+OK
+> SET key2 "value2"
+OK
+> MGET key1 key2
+1) "value1"
+2) "value2"
+```
+
+MSET
+Birden fazla anahtarın değerlerini belirtilen değerlere ayarlar:
+
+
+```csharp
+> MSET key1 "value1" key2 "value2"
+OK
+> GET key1
+"value1"
+> GET key2
+"value2"
+
+```
+
+APPEND
+Bir string değerine belirtilen değeri ekler:
+
+```csharp
+
+> APPEND mykey " world"
+12
+> GET mykey
+"Hello Redis world"
+```
+
+SETEX
+Bir string değerini belirtilen süre boyunca ayarlar:
+
+```csharp
+> SETEX mykey 10 "hello"
+OK
+> GET mykey
+"hello"
+> TTL mykey
+(integer) 
+```
+
+## SET  DATA TYPE
 
 SADD: Bir Set içine bir veya birden fazla eleman ekler. Eğer eleman zaten Set içinde varsa eklenmez.
 
