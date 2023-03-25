@@ -559,3 +559,226 @@ OK
 1) "hello"
 2) "world"
 ```
+
+
+## SORTED SET DATA TYPE
+
+ZADD
+Bir Sorted Set içinde belirtilen skor(score) ve değeri ekler:
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZRANGE myset 0 -1 WITHSCORES
+1) "one"
+2) "1"
+3) "two"
+4) "2"
+5) "three"
+6) "3"
+```
+
+ZRANGE
+Bir Sorted Set içinde belirtilen indeks aralığındaki değerleri döndürür:
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZRANGE myset 0 -1
+1) "one"
+2) "two"
+3) "three"
+```
+
+
+ZRANK
+Bir Sorted Set içinde belirtilen elemanın sıralama indeksini döndürür:
+
+```csharp
+
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZRANK myset "two"
+1
+
+```
+ZREM
+Bir Sorted Set içinde belirtilen elemanı siler:
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZREM myset "two"
+1
+> ZRANGE myset 0 -1
+1) "one"
+2) "three"
+```
+
+ZSCORE
+Bir Sorted Set içinde belirtilen elemanın skorunu döndürür:
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZSCORE myset "two"
+2
+```
+
+ZCOUNT
+Bir Sorted Set içinde belirtilen skor aralığındaki eleman sayısını döndürür:
+
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZCOUNT myset 1 2
+2
+
+```
+
+ZINCRBY
+Bir Sorted Set içinde belirtilen elemanın skorunu belirtilen miktarda arttırır:
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZINCRBY myset 2 "one"
+3
+> ZSCORE myset "one"
+3
+```
+
+ZCARD
+Bir Sorted Set içindeki eleman sayısını döndürür:
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZCARD myset
+3
+```
+
+ZREVRANGE
+Bir Sorted Set içinde belirtilen indeks aralığındaki elemanları tersten sıralayarak döndürür:
+
+```csharp
+
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZREVRANGE myset 0 -1
+1) "three"
+2) "two"
+3) "one"
+```
+
+
+ZREVRANGEBYSCORE
+Bir Sorted Set içinde belirtilen skor aralığındaki elemanları tersten sıralayarak döndürür:
+
+
+```csharp
+> ZADD myset 1 "one"
+1
+> ZADD myset 2 "two"
+1
+> ZADD myset 3 "three"
+1
+> ZREVRANGEBYSCORE myset 3 1
+1) "three"
+2) "two"
+3) "one"
+```
+
+ZINTERSTORE
+Birden fazla Sorted Set arasındaki kesişimi yeni bir Sorted Set olarak oluşturur:
+
+```csharp
+
+> ZADD myset1 1 "one"
+1
+> ZADD myset1 2 "two"
+1
+> ZADD myset2 2 "two"
+1
+> ZADD myset2 3 "three"
+1
+> ZINTERSTORE myset3 2 myset1 myset2 WEIGHTS 2 3
+1
+> ZRANGE myset3 0 -1 WITHSCORES
+1) "two"
+2) "8"
+```
+
+
+ZUNIONSTORE
+Birden fazla Sorted Set arasındaki birleşimi yeni bir Sorted Set olarak oluşturur:
+
+```csharp
+
+> ZADD myset1 1 "one"
+1
+> ZADD myset1 2 "two"
+1
+> ZADD myset2 2 "two"
+1
+> ZADD myset2 3 "three"
+1
+> ZUNIONSTORE myset3 2 myset1 myset2 WEIGHTS 2 3
+1
+> ZRANGE myset3 0 -1 WITHSCORES
+1) "one"
+2) "2"
+3) "three"
+4) "9"
+5) "two"
+6) "10"
+```
+
+
+
+
+
